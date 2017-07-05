@@ -11,23 +11,25 @@ knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",comment=".",fig.align
 
 ##' # Reference
 ##' 
-##' - Title: *Clinical responses to ERK inhibition
+##' - Title 
+##'     - *Clinical responses to ERK inhibition
 ##' in BRAF{V600E}-mutant colorectal cancer predicted
 ##' using a computational model*
-##' - Authors: 
-##'   - Daniel C. Kirouac
-##'   - Gabriele Schaefer
-##'   - Jocelyn Chan
-##'   - Mark Merchant
-##'   - Christine Orr
-##'   - Shih-Min A. Huang
-##'   - John Moffat
-##'   - Lichuan Liu
-##'   - Kapil Gadkar
-##'   - Saroja Ramanujan
-##' - npj Systems Biology and Applications, 3
-##' - Article number: 14 (2017)
-##' - doi: 10.1038/s41540-017-0016-1
+##' - Authors
+##'     - Daniel C. Kirouac
+##'     - Gabriele Schaefer
+##'     - Jocelyn Chan
+##'     - Mark Merchant
+##'     - Christine Orr
+##'     - Shih-Min A. Huang
+##'     - John Moffat
+##'     - Lichuan Liu
+##'     - Kapil Gadkar
+##'     - Saroja Ramanujan
+##' - Citation
+##'     - npj Systems Biology and Applications, 3
+##'     - Article number: 14 (2017)
+##'     - doi: 10.1038/s41540-017-0016-1
 ##' 
 ##' 
 
