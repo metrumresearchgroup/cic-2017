@@ -24,7 +24,7 @@ vp <- read_csv("data/s10vpop.csv") %>% slice(1)
 ##' Update parameters and initial conditions
 mod %<>% param(vp) %>% init(vp) %>% update(end=56,delta=0.1)
 
-##' Create a data set
+##' ## Create a data set
 dataG <- datag(400)
 
 out <- mrgsim(mod,data=dataG,obsonly=TRUE,Req="ERKi_blood,CELLS")
@@ -33,7 +33,7 @@ out
 plot(out)
 
 
-##' Dose/response
+##' ## Dose/response
 dataG2 <- datag(amt=c(150,200,300,400))
 out <- mrgsim(mod,data=dataG2,obsonly=TRUE,Req="ERKi_blood,CELLS")
 out
@@ -42,7 +42,7 @@ plot(out)
 
 
 
-##' Sensitivity analysis - wOR
+##' ## Sensitivity analysis - `wOR`
 .mod <- update(mod,events=as.ev(dataG,keep_id=FALSE))
 
 out <- sens_unif(.mod, n=200, lower = 0.9, upper=1, pars="wOR",Req="ERKi_blood,TUMOR")
@@ -53,7 +53,7 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
   .colSet1() 
 
 
-##' # Sensitivity analysis - taui4
+##' ## Sensitivity analysis - `taui4`
 ##' 
 ##' - Adding 30% variability to IC50
 ##' 
@@ -69,7 +69,7 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
   .colSet1() 
 
 
-##' Explore doses in the vpop
+##' ## Explore doses in the `vpop`
 set.seed(111)
 vp <- read_csv("data/s10vpop.csv") %>% sample_n(250,replace=TRUE,weight=PW)
 vp %<>% mutate(ID = 1:n())
@@ -91,7 +91,7 @@ ggplot(data=sims, aes(x=factor(dose),y=TUMOR)) +
   geom_hline(yintercept=0.7,col="firebrick") + 
   geom_boxplot(fill=NA) + ylim(0,2.25)
 
-
+##' ### Summary
 sims %>% 
   group_by(dose) %>%
   summarise(med=median(TUMOR), R30 = mean(TUMOR < 0.7))

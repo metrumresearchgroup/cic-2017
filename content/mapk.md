@@ -5,6 +5,7 @@ mod %<>% param(vp) %>% init(vp) %>% update(end=56,delta=0.1)
 ```
 
 Create a data set
+-----------------
 
 ``` r
 dataG <- datag(400)
@@ -34,6 +35,7 @@ plot(out)
 ![](img/mapk-R-unnamed-chunk-3-1.png)
 
 Dose/response
+-------------
 
 ``` r
 dataG2 <- datag(amt=c(150,200,300,400))
@@ -61,7 +63,8 @@ plot(out)
 
 ![](img/mapk-R-unnamed-chunk-4-1.png)
 
-Sensitivity analysis - wOR
+Sensitivity analysis - `wOR`
+----------------------------
 
 ``` r
 .mod <- update(mod,events=as.ev(dataG,keep_id=FALSE))
@@ -76,8 +79,8 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
 
 ![](img/mapk-R-unnamed-chunk-5-1.png)
 
-Sensitivity analysis - taui4
-============================
+Sensitivity analysis - `taui4`
+------------------------------
 
 -   Adding 30% variability to IC50
 
@@ -96,7 +99,8 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
 
 ![](img/mapk-R-unnamed-chunk-6-1.png)
 
-Explore doses in the vpop
+Explore doses in the `vpop`
+---------------------------
 
 ``` r
 set.seed(111)
@@ -122,6 +126,8 @@ ggplot(data=sims, aes(x=factor(dose),y=TUMOR)) +
 ```
 
 ![](img/mapk-R-unnamed-chunk-7-1.png)
+
+### Summary
 
 ``` r
 sims %>% 
