@@ -212,6 +212,5 @@ dxdt_TD1         =   TD;
 
 $TABLE
 capture TUMOR = CELLS;
+capture GDC = ERKi;
 
-$CAPTURE RAFi_C RTK1i_C MEKi_C ERKi_C AKTi_C AKT S6 ERK
-RTK1 RTK2 RTK3 BRAF CRAF RAS MEK

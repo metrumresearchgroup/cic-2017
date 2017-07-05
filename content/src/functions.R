@@ -30,3 +30,9 @@ datag <- function(amt) {
 
 .colSet1 <- function(...) ggplot2::scale_color_brewer(palette="Set1",...)
 .fillSet1 <- function(...) ggplot2::scale_fill_brewer(palette="Set1",...)
+
+nfact <- function(x,prefix="", suffix="",pad=TRUE) {
+  ux <- sort(unique(x))
+  if(pad) return(factor(x,ux, paste(prefix,ux,suffix)))
+  return(factor(x,ux, paste0(prefix,ux,suffix)))
+}
