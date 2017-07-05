@@ -61,7 +61,7 @@ mod %<>% param(vp) %>% init(vp) %>% update(end=56,delta=0.1)
 ##' ## Simple simulation scenario
 ##' 
 ##' - `GDC` is the `TUMOR` `GDC-0994` concentration (partition coefficient=1; `ERKi`)
-##' - `TUMOR` is the `CELLS` compartment (renamed for clarity here)`
+##' - `TUMOR` is the `CELLS` compartment (renamed for clarity here)
 ##' 
 dataG <- datag(400)
 
