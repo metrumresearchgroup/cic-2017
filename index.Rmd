@@ -1,0 +1,38 @@
+---
+ title: ""
+ author: ""
+ date: ""
+ output: 
+   beamer_presentation:
+     fig_width: 6
+     fig_height: 3
+     includes:
+       in_header: "content/src/mrgbeam.tex"
+---
+
+---
+
+
+
+
+\mytitle{}
+\vskip 1cm
+\begin{center}
+\begin{minipage}{0.8\linewidth}
+\begin{block}{\centering {\bf TOWARD OPEN SCIENCE}}\centering Translating literature-reported quantitative 
+pharmacology models for simulation and interactive
+visual exloration
+\end{block}
+\end{minipage}
+\end{center}
+
+\vskip 1.5cm
+
+\titlewhere
+
+
+---
+
+
+
+

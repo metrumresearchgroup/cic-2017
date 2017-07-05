@@ -141,11 +141,12 @@ sim <- function(dose) {
 
 ##' __Take advantage of parallelization provided by `R`__
 library(parallel)
-doses <- c(seq(0,400,100),800)
-out <- mclapply(doses,sim)
+
 
 ##' __Simulate__
-sims <- bind_rows(out) %>% mutate(dosef = nfact(dose))
+doses <- c(seq(0,400,100),800)
+out <- mclapply(doses,sim) %>% bind_rows
+sims <- mutate(out,dosef = nfact(dose))
 
 
 ##' __Plot__
