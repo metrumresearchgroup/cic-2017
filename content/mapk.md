@@ -57,13 +57,33 @@ mod %<>% param(vp) %>% init(vp) %>% update(end=56,delta=0.1)
 Simple simulation scenario
 --------------------------
 
--   `GDC` is the `TUMOR` `GDC-0994` concentration (partition coefficient=1; `ERKi`)
--   `TUMOR` is the `CELLS` compartment (renamed for clarity here)\`
+-   `GDC-0994` is dosed 21 days on / 7 days off
+-   We made a function to automate data set creation
 
 ``` r
 dataG <- datag(400)
+```
 
+``` r
+dataG
+```
+
+    . # A tibble: 2 x 7
+    .     amt  time  evid   cmt    ID    ii  addl
+    .   <dbl> <dbl> <dbl> <dbl> <int> <dbl> <dbl>
+    . 1   400     0     1    12     1     1    20
+    . 2   400    28     1    12     1     1    20
+
+**Simulate**
+
+``` r
 out <- mrgsim(mod,data=dataG,obsonly=TRUE,Req="GDC,TUMOR")
+```
+
+-   `GDC` is the `TUMOR` `GDC-0994` concentration (partition coefficient=1; `ERKi`)
+-   `TUMOR` is the `CELLS` compartment (renamed for clarity here)
+
+``` r
 out
 ```
 
@@ -81,43 +101,50 @@ out
     . [7,]  1  0.6 1.413 0.9962
     . [8,]  1  0.7 1.294 0.9949
 
+**Plot**
+
 ``` r
 plot(out)
 ```
 
-<img src="img/mapk-R-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 Dose/response
 -------------
 
 ``` r
-dataG2 <- datag(amt=c(150,200,300,400))
+dataG2 <- datag(amt=c(0,150,200,300,400))
 out <- mrgsim(mod,data=dataG2,obsonly=TRUE,Req="GDC,TUMOR")
 out
 ```
 
     . Model:  mapk.cpp 
-    . Dim:    2244 x 4 
+    . Dim:    2805 x 4 
     . Time:   0 to 56 
-    . ID:     4 
-    .      ID time    GDC  TUMOR
-    . [1,]  1  0.0 0.0000 1.0000
-    . [2,]  1  0.1 0.7967 1.0008
-    . [3,]  1  0.2 0.7535 1.0010
-    . [4,]  1  0.3 0.6906 1.0008
-    . [5,]  1  0.4 0.6323 1.0005
-    . [6,]  1  0.5 0.5789 1.0002
-    . [7,]  1  0.6 0.5300 1.0000
-    . [8,]  1  0.7 0.4853 0.9999
+    . ID:     5 
+    .      ID time GDC TUMOR
+    . [1,]  1  0.0   0 1.000
+    . [2,]  1  0.1   0 1.001
+    . [3,]  1  0.2   0 1.002
+    . [4,]  1  0.3   0 1.003
+    . [5,]  1  0.4   0 1.004
+    . [6,]  1  0.5   0 1.005
+    . [7,]  1  0.6   0 1.006
+    . [8,]  1  0.7   0 1.007
 
 ``` r
 plot(out)
 ```
 
-<img src="img/mapk-R-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 Sensitivity analysis - `wOR`
 ----------------------------
+
+-   MAPK pathway dependence (quantitative OR gate)
+-   Tumors that respond well depend on MAPK signalling pathways
+-   Simulate parameters from `uniform` distribution
+-   Draw 200 values for `wOR` between 0.9 and 1
 
 ``` r
 .mod <- update(mod,events=as.ev(dataG,keep_id=FALSE),delta=0.25)
@@ -133,12 +160,13 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
   .colSet1() 
 ```
 
-<img src="img/mapk-R-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
 Sensitivity analysis - `taui4`
 ------------------------------
 
--   Adding 30% variability to IC50
+-   Adding `30%` variability to `EC50`
+-   Parameters from log-normali distribution
 
 ``` r
 set.seed(3332)
@@ -151,29 +179,49 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
   .colSet1() 
 ```
 
-<img src="img/mapk-R-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 Explore doses in the `vpop`
 ---------------------------
+
+-   Focus on doses from 0 to 400 mg QD in 21/7 cycle
+-   Also simulate 800 mg dose to see how much larger decrease in tumor size we can get
+-   Sample from `vpop` using prevalence weights (`PW`)
 
 ``` r
 set.seed(111)
 vp <- read_csv("data/s10vpop.csv") %>% sample_n(250,replace=TRUE,weight=PW)
 vp %<>% mutate(ID = 1:n())
 data <- datag(1)
+```
 
+**A helper function**
+
+``` r
 sim <- function(dose) {
   data %<>% mutate(amt=dose)
   mrgsim(mod,idata=vp,events=as.ev(data,keep_id=FALSE),
          end=-1,add=56,obsonly=TRUE,Req="TUMOR") %>% mutate(dose=dose)
 }
+```
 
+**Take advantage of parallelization provided by `R`**
+
+``` r
 library(parallel)
 doses <- c(seq(0,400,100),800)
 out <- mclapply(doses,sim)
+```
 
+**Simulate**
+
+``` r
 sims <- bind_rows(out) %>% mutate(dosef = nfact(dose))
+```
 
+**Plot**
+
+``` r
 ggplot(data=sims, aes(x=dosef,y=TUMOR)) + 
   geom_point(position=position_jitter(width=0.1),col="darkgrey") +
   geom_hline(yintercept=0.7,col="darkslateblue",lty=2) + 
@@ -181,7 +229,7 @@ ggplot(data=sims, aes(x=dosef,y=TUMOR)) +
   .fillSet1(name="")
 ```
 
-<img src="img/mapk-R-unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
 ### Summary
 

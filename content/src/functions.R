@@ -17,15 +17,17 @@ cutq <- function(x,prefix=character(0)) {
 }
 
 
+
 datag <- function(amt) {
-  days <- seq(0,20)
-  days <- c(days,28+days)
   out <- vector(mode="list",length=length(amt))
   for(i in seq_along(amt)) {
-    out[[i]] <- data_frame(amt=amt[i],time=days,evid=1,cmt=12,ID=i)
+    cycle <- data_frame(amt=amt[i],time=0,evid=1,cmt=12,ID=i,ii=1,addl=20)
+    out[[i]] <- bind_rows(cycle,mutate(cycle,time=28))
   }
   bind_rows(out)
 }
+
+
 
 
 .colSet1 <- function(...) ggplot2::scale_color_brewer(palette="Set1",...)
