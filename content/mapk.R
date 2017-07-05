@@ -94,6 +94,7 @@ set.seed(2223)
 out <- sens_unif(.mod, n=200, lower = 0.9, upper=1, 
                  pars="wOR",Req="GDC,TUMOR")
 
+##' __Plot by quantile of simulated `wOR`__
 out %<>% mutate(wORq = cutq(wOR))
 
 ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) + 
@@ -110,6 +111,7 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
 set.seed(3332)
 out <- sens_norm(.mod, n=200, cv=30, pars="taui4",Req="GDC,TUMOR")
 
+##' __Plot by quantile of simulated `taui4`__
 out %<>% mutate(taui4q = cutq(taui4))
 
 ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) + 

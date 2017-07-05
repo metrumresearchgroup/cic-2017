@@ -143,7 +143,11 @@ Sensitivity analysis - `wOR`
 set.seed(2223)
 out <- sens_unif(.mod, n=200, lower = 0.9, upper=1, 
                  pars="wOR",Req="GDC,TUMOR")
+```
 
+**Plot by quantile of simulated `wOR`**
+
+``` r
 out %<>% mutate(wORq = cutq(wOR))
 
 ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) + 
@@ -151,7 +155,7 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
   .colSet1() 
 ```
 
-<img src="img/mapk-R-unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 Sensitivity analysis - `taui4`
 ------------------------------
@@ -162,7 +166,11 @@ Sensitivity analysis - `taui4`
 ``` r
 set.seed(3332)
 out <- sens_norm(.mod, n=200, cv=30, pars="taui4",Req="GDC,TUMOR")
+```
 
+**Plot by quantile of simulated `taui4`**
+
+``` r
 out %<>% mutate(taui4q = cutq(taui4))
 
 ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) + 
@@ -170,7 +178,7 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
   .colSet1() 
 ```
 
-<img src="img/mapk-R-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 Explore doses in the `vpop`
 ---------------------------
@@ -220,7 +228,7 @@ ggplot(data=sims, aes(x=dosef,y=TUMOR)) +
   .fillSet1(name="")
 ```
 
-<img src="img/mapk-R-unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
+<img src="img/mapk-R-unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 ### Summary
 
