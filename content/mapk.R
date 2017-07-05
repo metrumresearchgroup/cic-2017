@@ -5,7 +5,7 @@
 ##' ---
 
 #+ echo=FALSE, message=FALSE
-knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",comment=".")
+knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",comment=".",fig.align="center")
 
 library(mrgsolve)
 library(readr)
