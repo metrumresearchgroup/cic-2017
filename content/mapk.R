@@ -16,16 +16,8 @@ knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",comment=".",fig.align
 ##' in BRAF{V600E}-mutant colorectal cancer predicted
 ##' using a computational model*
 ##' - Authors
-##'     - Daniel C. Kirouac
-##'     - Gabriele Schaefer
-##'     - Jocelyn Chan
-##'     - Mark Merchant
-##'     - Christine Orr
-##'     - Shih-Min A. Huang
-##'     - John Moffat
-##'     - Lichuan Liu
-##'     - Kapil Gadkar
-##'     - Saroja Ramanujan
+##'     - Daniel C. Kirouac, Gabriele Schaefer, Jocelyn Chan, Mark Merchant, Christine Orr,
+##'     Shih-Min A. Huang, John Moffat, Lichuan Liu, Kapil Gadkar, Saroja Ramanujan
 ##' - Citation
 ##'     - npj Systems Biology and Applications, 3
 ##'     - Article number: 14 (2017)
@@ -94,7 +86,7 @@ plot(out)
 ##' - MAPK pathway dependence (quantitative OR gate)
 ##' - Tumors that respond well depend on MAPK signalling pathways
 ##' - Simulate parameters from `uniform` distribution
-##' - Draw 200 values for `wOR` between 0.9 and 1
+##' - Draw 200 values for `wOR` between `0.9` and `1`
 ##' 
 .mod <- update(mod,events=as.ev(dataG,keep_id=FALSE),delta=0.25)
 
@@ -112,7 +104,7 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
 ##' ## Sensitivity analysis - `taui4`
 ##' 
 ##' - Adding `30%` variability to `EC50`
-##' - Parameters from log-normali distribution
+##' - Parameters from log-normal distribution
 ##' 
 
 set.seed(3332)
@@ -127,8 +119,8 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
 
 ##' ## Explore doses in the `vpop`
 ##' 
-##' - Focus on doses from 0 to 400 mg QD in 21/7 cycle
-##' - Also simulate 800 mg dose to see how much larger
+##' - Focus on doses from `0` to `400 mg` QD in `21/7` cycle
+##' - Also simulate `800 mg` dose to see how much larger
 ##' decrease in tumor size we can get
 ##' - Sample from `vpop` using prevalence weights (`PW`)
 ##' 
