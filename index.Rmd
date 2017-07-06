@@ -15,7 +15,8 @@
 
 
 
-\mytitle{}
+\vskip 0.5cm
+\centerline{\includegraphics[width=5cm]{content/img/Metrum_SystemsPharmacology}}
 \vskip 1cm
 \begin{center}
 \begin{minipage}{0.8\linewidth}
@@ -28,7 +29,8 @@ visual exploration
 
 \vskip 1.5cm
 
-\titlewhere
+\centerline{\textcolor{mrggreen2}{Cambridge Innovation Center}}
+\centerline{20 July 2017}
 
 
 ---
