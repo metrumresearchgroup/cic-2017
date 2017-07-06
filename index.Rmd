@@ -21,7 +21,7 @@
 \begin{minipage}{0.8\linewidth}
 \begin{block}{\centering {\bf TOWARD OPEN SCIENCE}}\centering Translating literature-reported quantitative 
 pharmacology models for simulation and interactive
-visual exloration
+visual exploration
 \end{block}
 \end{minipage}
 \end{center}
