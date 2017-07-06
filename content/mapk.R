@@ -5,7 +5,8 @@
 ##' ---
 
 #+ echo=FALSE, message=FALSE
-knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",comment=".",fig.align="center")
+knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",
+                      comment=".",fig.align="center")
 
 #+ echo=TRUE
 
@@ -88,7 +89,7 @@ plot(out)
 ##' - Simulate parameters from `uniform` distribution
 ##' - Draw 200 values for `wOR` between `0.9` and `1`
 ##' 
-.mod <- update(mod,events=as.ev(dataG,keep_id=FALSE),delta=0.25)
+.mod <- update(mod,events=as.ev(dataG,keep_id=FALSE),delta=0.5)
 
 set.seed(2223)
 out <- sens_unif(.mod, n=200, lower = 0.9, upper=1, 
@@ -118,6 +119,22 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
   geom_line() + geom_hline(yintercept=1, lty=2) +
   .colSet1() 
 
+##' __Similar analysis with `covset`__
+cov1 <- dmutate::covset(tau4i[0.0002,0.1]~rlnorm(log(0.025),1),
+                        wOR ~ runif(0.9,0.99))
+#+
+out <- sens_covset(.mod,n=500,covset=cov1) %>% filter(time==56)
+
+#+
+out %<>% mutate(TUMORq = cutq(TUMOR))
+
+#+
+ggplot(out, aes(wOR,tau4i,col=TUMORq)) + 
+  geom_point() + 
+  .colSet1() +
+  geom_hline(yintercept=0.025,lty=2,lwd=1) 
+
+
 
 ##' ## Explore doses in the `vpop`
 ##' 
@@ -145,7 +162,7 @@ library(parallel)
 
 ##' __Simulate__
 doses <- c(seq(0,400,100),800)
-out <- mclapply(doses,sim) %>% bind_rows
+out <- mclapply(doses,mc.cores=4,sim) %>% bind_rows
 sims <- mutate(out,dosef = nfact(dose))
 
 
