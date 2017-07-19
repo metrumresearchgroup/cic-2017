@@ -87,12 +87,12 @@ plot(out)
 ##' - MAPK pathway dependence (quantitative OR gate)
 ##' - Tumors that respond well depend on MAPK signalling pathways
 ##' - Simulate parameters from `uniform` distribution
-##' - Draw 200 values for `wOR` between `0.9` and `1`
+##' - Draw 100 values for `wOR` between `0.9` and `1`
 ##' 
 .mod <- update(mod,events=as.ev(dataG,keep_id=FALSE),delta=0.5)
 
 set.seed(2223)
-out <- sens_unif(.mod, n=200, lower = 0.9, upper=1, 
+out <- sens_unif(.mod, n=100, lower = 0.9, upper=1, 
                  pars="wOR",Req="GDC,TUMOR")
 
 ##' __Plot by quantile of simulated `wOR`__
@@ -110,7 +110,7 @@ ggplot(out, aes(time,TUMOR,col=wORq,group=ID)) +
 ##' 
 
 set.seed(3332)
-out <- sens_norm(.mod, n=200, cv=30, pars="taui4",Req="GDC,TUMOR")
+out <- sens_norm(.mod, n=100, cv=50, pars="taui4",Req="GDC,TUMOR")
 
 ##' __Plot by quantile of simulated `taui4`__
 out %<>% mutate(taui4q = cutq(taui4))
@@ -146,8 +146,7 @@ ggplot(out, aes(wOR,tau4i,col=TUMORq)) +
 set.seed(111)
 vp <- read_csv("data/s10vpop.csv") %>% sample_n(250,replace=TRUE,weight=PW)
 vp %<>% mutate(ID = 1:n())
-data <- datag(1)
-
+data <- datag(1) %>% mutate(start=time)
 
 ##' __A helper function__
 sim <- function(dose) {

@@ -214,3 +214,5 @@ $TABLE
 capture TUMOR = CELLS;
 capture GDC = ERKi;
 
+$CAPTURE ERKi
+
