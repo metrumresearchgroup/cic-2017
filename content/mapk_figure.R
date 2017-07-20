@@ -104,10 +104,9 @@ lab <- c("No TREAT", "CETUX", "VEMU", "COBI", "GDC",
          "CETUX+VEMU+COBI", "CETUX+VEMU+GDC", "CETUX+COBI+GDC", "VEMU+COBI+GDC",
          "CETUX+VEMU+COBI+GDC")
 
-sims <- bind_rows(sim1,sim2,sim3,sim4,sim5,
-                  sim23,sim24,sim25,sim34,sim35,sim45,
-                  sim234,sim235,sim245,sim345,
-                  sim2345)
+sims <- bind_rows(sim1,sim2,sim3,sim4,sim5,sim23,sim24,sim25,sim34,
+                  sim35,sim45,sim234,sim235,sim245,sim345,sim2345)
+
 ulab <- unique(sims$label)
 sims %<>% mutate(labelf = factor(label,levels=ulab,labels=as.character(ulab)))
 sims %<>% mutate(labelff = factor(label,levels=ulab,labels=lab))

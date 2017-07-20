@@ -15,7 +15,7 @@ $PROB
   
 
 $CMT @annotated
-A1 : EPO SC
+A1 : EPO SC 
 A2 : EPO SERUM
 A3 : EPO TISSUE
 A4 : PRECURSOR 1

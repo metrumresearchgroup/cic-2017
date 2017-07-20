@@ -116,10 +116,10 @@ CP\&T vol. 100 no. 5 pp. 513-23 11/2016
 \includegraphics[width=200pt]{content/img/csamodel}
 
 
-# Figure 4a
+# Figure 4a - estimate model parameters with this data
 
 \centering
-\includegraphics[width=200pt]{content/img/statinprofile}
+\includegraphics[width=225pt]{content/img/statinprofile}
 
 ---
 

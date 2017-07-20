@@ -1,30 +1,3 @@
-##' ---
-##' output: 
-##'   md_document:
-##'     variant: markdown_github
-##' ---
-
-#+ echo=FALSE, message=FALSE
-knitr::opts_chunk$set(message=FALSE,fig.path="img/mapk-R-",
-                      comment=".",fig.align="center")
-
-#+ echo=TRUE
-
-##' # Reference
-##' 
-##' - Title 
-##'     - *Clinical responses to ERK inhibition
-##' in BRAF{V600E}-mutant colorectal cancer predicted
-##' using a computational model*
-##' - Authors
-##'     - Daniel C. Kirouac, Gabriele Schaefer, Jocelyn Chan, Mark Merchant, Christine Orr,
-##'     Shih-Min A. Huang, John Moffat, Lichuan Liu, Kapil Gadkar, Saroja Ramanujan
-##' - Citation
-##'     - npj Systems Biology and Applications, 3
-##'     - Article number: 14 (2017)
-##'     - doi: 10.1038/s41540-017-0016-1
-##' 
-##' 
 
 
 ##' # Setup
@@ -54,10 +27,9 @@ mod %<>% param(vp) %>% init(vp) %>% update(end=56,delta=0.1)
 ##' ## Simple simulation scenario
 ##' 
 ##' - `GDC-0994` is dosed 21 days on / 7 days off
-##' - We made a function to automate data set creation
+##' 
 ##' 
 dataG <- datag(400)
-
 #+
 dataG
 
@@ -120,7 +92,7 @@ ggplot(out, aes(time,TUMOR,col=taui4q,group=ID)) +
   .colSet1() 
 
 ##' __Similar analysis with `covset`__
-cov1 <- dmutate::covset(tau4i[0.0002,0.1]~rlnorm(log(0.025),1),
+cov1 <- dmutate::covset(tau4i[0.0002,0.2]~rlnorm(log(0.025),1),
                         wOR ~ runif(0.9,0.99))
 #+
 out <- sens_covset(.mod,n=500,covset=cov1) %>% filter(time==56)

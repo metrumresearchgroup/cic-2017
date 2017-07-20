@@ -4,8 +4,13 @@ library(ggplot2)
 
 mod <- mread("epo","model")
 
+mod %>%
+  ev(amt=7800,rate=-2) %>% 
+  mrgsim(end=480, delta=0.1) %>%
+  plot
 
-mwf <- ev_days(ev(amt=78*100),days="m,w,f",ii=24*7, addl=3)
+
+mwf <- ev_days(ev(amt=78*100,rate=-2),days="m,w,f",ii=24*7, addl=3)
 
 mwf <- as.ev(mwf)
 
@@ -16,8 +21,8 @@ mod %>%
   plot
 
 
-##' Once weekly same as TIW
-qw <- ev(amt=40000, ii=24*7, addl=3)
+##' Once weekly SC same as TIW SC
+qw <- ev(amt=40000, ii=24*7, addl=3, rate=-2)
 
 data <- as_data_set(mwf,qw)
 
@@ -28,10 +33,16 @@ mod %>%
   mrgsim(end=700,digits=6,delta=0.5) %>%
   plot
 
+##' Once weekly IV less efficacious than TIW IV
+datai <- mutate(data, cmt=2, rate=0)
+mod %>% 
+  data_set(datai) %>% zero_re %>%
+  mrgsim(end=700,digits=6,delta=0.5) %>%
+  plot
+
 
 ##' Tolerance / rebound in reticulocytes
-##' What controls the depth?
-e2 <- ev_days(ev(amt=70*100),days="m,w,f",ii=24*7, addl=2)
+e2 <- ev_days(ev(amt=70*100,rate=-2),days="m,w,f",ii=24*7, addl=2)
 
 out <- 
   mod %>% 
@@ -41,12 +52,11 @@ plot(out)
 
 library(mrgsolvetk)
 
-
 .mod <- update(mod, events=mwf, 
-               end=2400,tscale=1/24/7, delta=4) %>% zero_re
+               end=2400,tscale=1/24/7, delta=2) %>% zero_re
 
 ##' SENSITIVITY ANALYSIS
-##' EPO CLEARANCE
+##' EPO CLEARANCE (CL)
 out <- sens_norm(.mod, cv=50,  pars="THETA4",n=50)
 
 out <- tidyr::gather(out,variable,value,c(EPOi:HGBi))
@@ -55,7 +65,7 @@ ggplot(out, aes(time,value,group=.n,col=THETA4)) +
   geom_line() + facet_wrap(~variable, scales="free_y")
 
 ##" SENSITIVITY ANALYSIS
-##' KD
+##' KD EPO + EPOR ---KD-->EPO-EPOR
 out <- sens_norm(.mod, cv=50,  pars="THETA17", n=50)
 
 out <- tidyr::gather(out,variable,value,c(EPOi:HGBi))

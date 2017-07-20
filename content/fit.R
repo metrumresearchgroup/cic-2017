@@ -20,15 +20,16 @@ ggplot(data=data,aes(time,DV)) +
 
 dose <- filter(data,evid==1) %>% mutate(typef=NULL)
 
-yobs <- filter(data,evid==0) %>% select(DV) %>% unlist %>% unname
+yobs <- filter(data,evid==0) %>% dplyr::select(DV) %>% unlist %>% unname
 
 wt <- function(x) 1/x^2
+wss <- function(dv,pred,par=NULL) sum(((dv-pred)/dv)^2)
 
 
 mod <- mread("yoshikado","model") %>% 
   update(end=14,delta=0.1) %>% Req(CP) %>% obsonly
 
-data %<>% select(-typef)
+data %<>% dplyr::select(-typef)
 
 mod %>% 
   mrgsim(data=dose,obsaug=TRUE) %>% 
@@ -47,7 +48,7 @@ pred <- function(p, .data, yobs=NULL, pred=FALSE) {
   
   out <- mrgsim(.mod,data=.data,obsonly=TRUE,Req="CP")
   
-  return(sum(wt(yobs)*(yobs-out$CP)^2))
+  return(wss(yobs,out$CP))
   
   #return(-1*sum(dnorm(log(yobs),log(out$CP),.par$sigma,log=TRUE)))
   
@@ -55,7 +56,7 @@ pred <- function(p, .data, yobs=NULL, pred=FALSE) {
 
 ##' Fit 5 parameters on log scale
 theta <- log(c(fbCLintall = 1.2, ikiu = 1.2, 
-               fbile = 0.8, ka = 0.1, ktr = 0.1))
+               fbile = 0.9, ka = 0.1, ktr = 0.1))
 
 control <- list(iprint=25)
 fit <- newuoa(theta, pred,.data=data, yobs=yobs,control=control)
@@ -88,20 +89,14 @@ exp(fit$par)
 
 library(mrgsolvetk)
 library(optimhelp)
-ofv <- function(dv,pred,par) {
-  -1*sum(dnorm(log(dv),
-               log(pred),par$sigma,log=TRUE))
-}
-ofv <- function(dv,pred,par) {
-   sum((1/dv^2)*(dv-pred)^2)
-}
+
 par <- parset(log_par("fbCLintall",1.2),
               log_par("ikiu", 1.2), 
-              logit_par("fbile", 0.4), 
-              log_par("ka", 1),
+              logit_par("fbile", 0.8), 
+              log_par("ka", 0.1),
               log_par("ktr", 0.1))
 
-fitt <- fit_optim(mod,data,pred="CP",ofv=ofv,par=par,method="CG",
+fitt <- fit_optim(mod,data,pred="CP",ofv=wss,par=par,method="CG",
                  control=list(trace=10))
 
 coef(fitt$pars) 
@@ -118,21 +113,26 @@ lower <- rep(-6,length(theta)) %>% setNames(names(theta))
 upper <- rep(4,length(theta)) %>% setNames(names(theta))
 
 set.seed(330303)
-control <- DEoptim.control(NP=10*length(theta), CR=0.925, F=0.85,
+decontrol <- DEoptim.control(NP=10*length(theta), CR=0.925, F=0.85,
                            itermax=100,storepopfrom=0)
-fit2 <- DEoptim(fn=pred, lower=lower,upper=upper, control=control,
+
+fit2 <- DEoptim(fn=pred, lower=lower,upper=upper, control=decontrol,
                 .data=data, yobs=yobs)
 
-data.frame(DE = exp(fit2$optim$bestmem),newuoa  = exp(fit$par)) %>% signif(3)
+data.frame(initial = exp(theta),
+           DE = exp(fit2$optim$bestmem),
+           newuoa  = exp(fit$par),
+           CG = exp(fitt$par)) %>% signif(3)
 
 
 ##' DA for the plot
 pops <- lapply(fit2$member$storepop, as.data.frame)
 hx <- bind_rows(pops)
-hx <- mutate(hx, iteration=rep(1:control$itermax,each=control$NP))
-hx <- mutate(hx, pop = rep(1:control$NP, time=control$itermax))
+hx <- mutate(hx, iteration=rep(1:decontrol$itermax,each=decontrol$NP))
+hx <- mutate(hx, pop = rep(1:decontrol$NP, time=decontrol$itermax))
 hxm <- gather(hx, variable, value, 1:5) %>% mutate(value = exp(value))
-best <- as_data_frame(fit2$member$bestmemit) %>% mutate(iteration = 1:control$itermax)
+best <- as_data_frame(fit2$member$bestmemit) %>% 
+  mutate(iteration = 1:decontrol$itermax)
 bestm <- gather(best,variable,value,1:5) %>% mutate(value = exp(value))
 
 

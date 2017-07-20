@@ -1,8 +1,4 @@
-##' ---
-##' title: ""
-##' output: pdf_document
-##' output_file: "run_stat.pdf"
-##' ---
+
 
 ##' ## Quantitative Analyses of Hepatic OATP-Mediated Interactions 
 ##' Between Statins and Inhibitors Using PBPK Modeling With a Parameter 
@@ -12,15 +8,12 @@
 library(mrgsolve)
 library(dplyr)
 library(ggplot2)
-options(mrgsolve_mread_quiet=TRUE)
-
-
 
 
 ##' stat model
 mod <- mread("yoshikado", "model")
 
-##' CsA simulation
+##' CsA simulation  ~2 mg/kg
 ec <- ev(amt=2000,cmt=2)
 out <- mod %>% ev(ec) %>% mrgsim(delta=0.01,end=12)
 sims <- as.tbl(out)
@@ -34,7 +27,7 @@ ggplot(sims, aes(x=time,y=CSA)) +
   geom_hline(yintercept=2000)
 
 
-##' # Pitavastatin (EHC model) simulation
+##' # Pitavastatin (EHC model) simulation ~ 2 mg
 ep <- ev(amt=30, time=1)
 out <- mod %>% ev(ep) %>% mrgsim(delta=0.1,add=seq(1,1.5,0.01), end=14)
 
