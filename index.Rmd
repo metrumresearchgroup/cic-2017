@@ -87,3 +87,62 @@ visual exploration
 - Translator from `SBML` to `mrgsolve` using `R` bindings to `libSBML`   
 
 
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/epotitle}
+
+[DDMoRe Repository DDMODEL00000076](http://repository.ddmore.foundation/model/DDMODEL00000076)
+
+# EPO Model
+
+\centering
+\includegraphics[width=300pt]{content/img/epomodel}
+
+---
+\centering
+\includegraphics[width=300pt]{content/img/statintitle}
+
+CP\&T vol. 100 no. 5 pp. 513-23 11/2016
+
+# Pitavastatin PBPK model with EHC
+
+\centering
+\includegraphics[width=200pt]{content/img/statinmodel}
+
+# CsA PBPK model 
+
+\centering
+\includegraphics[width=200pt]{content/img/csamodel}
+
+
+# Figure 4a
+
+\centering
+\includegraphics[width=200pt]{content/img/statinprofile}
+
+
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/erktitle}
+
+
+# MAPK signalling
+
+\centering
+\includegraphics[width=200pt]{content/img/erkmodel}
+
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/erkeq}
+
+
+\includegraphics[width=300pt]{content/img/erkworeq}
+
+
+# Kirouac et al. Figure 6b
+
+\centering
+\includegraphics[width=300pt]{content/img/erk6b}
