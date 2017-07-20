@@ -95,11 +95,11 @@ visual exploration
 [DDMoRe Repository DDMODEL00000076](http://repository.ddmore.foundation/model/DDMODEL00000076)
 
 # EPO Model
-
 \centering
 \includegraphics[width=300pt]{content/img/epomodel}
 
 ---
+
 \centering
 \includegraphics[width=300pt]{content/img/statintitle}
 
@@ -110,7 +110,7 @@ CP\&T vol. 100 no. 5 pp. 513-23 11/2016
 \centering
 \includegraphics[width=200pt]{content/img/statinmodel}
 
-# CsA PBPK model 
+# CsA PBPK model runs along with statin model (DDI)
 
 \centering
 \includegraphics[width=200pt]{content/img/csamodel}
@@ -121,15 +121,13 @@ CP\&T vol. 100 no. 5 pp. 513-23 11/2016
 \centering
 \includegraphics[width=200pt]{content/img/statinprofile}
 
-
 ---
 
 \centering
 \includegraphics[width=300pt]{content/img/erktitle}
 
 
-# MAPK signalling
-
+# MAPK signaling
 \centering
 \includegraphics[width=200pt]{content/img/erkmodel}
 
@@ -137,7 +135,6 @@ CP\&T vol. 100 no. 5 pp. 513-23 11/2016
 
 \centering
 \includegraphics[width=300pt]{content/img/erkeq}
-
 
 \includegraphics[width=300pt]{content/img/erkworeq}
 

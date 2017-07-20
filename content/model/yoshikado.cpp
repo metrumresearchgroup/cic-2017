@@ -173,7 +173,7 @@ double csai3 = 1.0+(iCliv3/iKp_liv)/ikitot;
 double csai4 = 1.0+(iCliv4/iKp_liv)/ikitot;
 double csai5 = 1.0+(iCliv5/iKp_liv)/ikitot;
 
-
+// Active transport & difussion into hepatocytes
 double hex2 = fh*(PSdiffe/5.0);
 dxdt_he1 = Qh*(Ccent-Che1)-(fb*(PSact/csai1+PSdiffi)/5.0)*Che1+hex2*Chc1 + ka*gut;
 dxdt_he2 = Qh*(Che1 -Che2)-(fb*(PSact/csai2+PSdiffi)/5.0)*Che2+hex2*Chc2;
