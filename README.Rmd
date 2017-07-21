@@ -60,7 +60,7 @@ knitr::opts_chunk$set(comment='.',fig.path="content/img/README-",
 ```
 
 
-## EPO Model [Yan et al.](#epo)
+## EPO Model ([Yan et al.](#epo))
 ```{r}
 mod <- mread("epo", "content/model")
 ```
@@ -94,7 +94,7 @@ mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>%
 ```
 
 
-## OATP-DDI model [Yoshikado et al.](#ddi)
+## OATP-DDI model ([Yoshikado et al.](#ddi))
 
 ```{r}
 mod <- mread("yoshikado", "content/model")
@@ -128,7 +128,7 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
 ```
 
 
-## ERI inhibition model [Kirouac et al.](#erki)
+## ERI inhibition model ([Kirouac et al.](#erki))
 
 ```{r}
 mod <- mread("mapk", "content/model")
