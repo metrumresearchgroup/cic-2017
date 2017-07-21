@@ -169,9 +169,16 @@ ggplot(data=sims) +
 - `minqa`
 - `tidyr`
 - `ggplot2`
+- `purrr`
+- `purrlyr`
+- `mrgsolvetk`
+- `dmutate`
 
-## mrgsolve installation
-Please be sure to install `mrgsolve` from GitHub:
+
+## Special installation instructions
+Please be sure to install `mrgsolve`, `dmutate` and `mrgsolvetk` from GitHub:
 ```r
 devtools::install_github("metrumresearchgroup/mrgsolve")
+devtools::install_github("mrgsolve/mrgsolvetk")
+devtools::install_github("kylebmetrum/dmutate")
 ```

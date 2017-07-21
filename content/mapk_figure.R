@@ -13,16 +13,18 @@ theme_plain <- function(...) {
   theme_bw() + theme(panel.grid.major=noline,panel.grid.minor=noline, 
                      plot.margin=margin(0.5,0.5,1,0.5,unit="cm"),...)
 }
-#create_model("modeltemplate.cpp","mapk.cpp")
+
+
 mod <- mread("mapk", "model")
 
 source("objects.R")
 rotx <- function(angle=30) theme(axis.text.x = element_text(angle = angle, hjust = 1))
 roty <- function(angle=30) theme(axis.text.y = element_text(angle = angle, hjust = 1))
 
+data.file <- file.path("data", "s10vpop.csv")
 
 set.seed(1001100)
-vp <- read_csv("s10vpop.csv") %>% sample_n(250,weight=PW,replace=TRUE)
+vp <- read_csv(data.file) %>% sample_n(250,weight=PW,replace=TRUE)
 
 vp %<>% mutate(VPOP2 = 1:n())
 

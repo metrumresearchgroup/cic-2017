@@ -135,10 +135,17 @@ R packages
 -   `minqa`
 -   `tidyr`
 -   `ggplot2`
+-   `purrr`
+-   `purrlyr`
+-   `mrgsolvetk`
+-   `dmutate`
 
-mrgsolve installation
----------------------
+Special installation instructions
+---------------------------------
 
-Please be sure to install `mrgsolve` from GitHub:
+Please be sure to install `mrgsolve`, `dmutate` and `mrgsolvetk` from
+GitHub:
 
     devtools::install_github("metrumresearchgroup/mrgsolve")
+    devtools::install_github("mrgsolve/mrgsolvetk")
+    devtools::install_github("kylebmetrum/dmutate")

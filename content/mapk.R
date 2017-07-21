@@ -18,7 +18,10 @@ mod <- mread("mapk", "model")
 ##' 
 ##' - This was provided in the supplementary material
 ##' 
-vp <- read_csv("data/s10vpop.csv") %>% slice(1)
+
+data.file <- file.path("data", "s10vpop.csv")
+
+vp <- read_csv(data.file) %>% slice(1)
 
 
 ##' ### Update parameters and initial conditions
