@@ -89,6 +89,7 @@ mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>%
   plot(EPOi+RBCi~time)
 ```
 
+
 ## OATP-DDI model (Yoshikado et al.)
 
 ```{r}
