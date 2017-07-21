@@ -11,8 +11,7 @@ The goal of this presentation was to translate and use models reported
 in the literature. Accordingly, we note that we were not involved in
 developing any of the models presented here, but acknowledge the authors
 who not only did the scientific work, but published that work in a way
-that allowed us to not only read about their models but to also use
-those models.
+that allowed us to both read about and use their models.
 
 <a name="epo"></a> **Population Pharmacokinetic and Pharmacodynamic
 Model- Based Comparability Assessment of a Recombinant Human Epoetin
