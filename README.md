@@ -105,7 +105,7 @@ Plot (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-ERI inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)\]
+ERK inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)\]
 ----------------------------------------------------------------------------------
 
     mod <- mread("mapk", "content/model")

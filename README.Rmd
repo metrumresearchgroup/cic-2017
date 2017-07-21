@@ -128,7 +128,7 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
 ```
 
 
-## ERI inhibition in CRC ([Kirouac et al.](#erki)) [[code](content/model/mapk.cpp)]
+## ERK inhibition in CRC ([Kirouac et al.](#erki)) [[code](content/model/mapk.cpp)]
 
 ```{r}
 mod <- mread("mapk", "content/model")
