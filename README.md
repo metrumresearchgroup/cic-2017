@@ -108,9 +108,6 @@ Simulate the DDI
 
 Plot (code not shown)
 
-    . Scale for 'y' is already present. Adding another scale for 'y', which
-    . will replace the existing scale.
-
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
 <a name="erkiex"></a>
