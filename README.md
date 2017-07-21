@@ -92,11 +92,11 @@ OATP-DDI model ([Yoshikado et al.](#ddi))
 
 Simulate the DDI
 
-    ddi <- c(ev(amt=2000, cmt=2, ID=1),
-             ev(amt=30,   cmt=1, ID=1))
+    ddi <- c(ev(amt=2000, cmt=2),
+             ev(amt=30,   cmt=1))
 
-    ddi <- as.data.frame(ddi)
-    no_ddi <- filter(ddi, amt==30) %>% mutate(ID=2)
+    ddi <- as.data.frame(ddi) %>% mutate(ID=2)
+    no_ddi <- filter(ddi, amt==30) %>% mutate(ID=1)
 
     data <- bind_rows(no_ddi,ddi)
 
