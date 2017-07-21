@@ -32,7 +32,7 @@ __Quantitative Analyses of Hepatic OATP-Mediated Interactions Between Statins an
 
 - CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 | NOVEMBER 2016 doi:10.1002/cpt.391
 
-- [Model](content/model/yoshikado.cpp), [R script](content/yoshikado.R), 
+- [Model](content/model/yoshikado.cpp), [R simulation script](content/yoshikado.R), 
 [Fit with minqa & RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
 __Clinical responses to ERK inhibition in BRAF{V600E}-mutant colorectal cancer predicted using a computational model__
@@ -121,6 +121,38 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
                      name="", labels=c("No-DDI", "DDI")) + 
   theme(legend.position="top")
 
+```
+
+
+## ERI inhibition model (Kirouac et al.)
+
+```{r}
+mod <- mread("mapk", "content/model")
+vp <- readr::read_csv("content/data/s10vpop.csv") %>% slice(1)
+mod <- param(mod,vp) %>% init(vp)
+```
+
+
+Simulate to cycles of  `GDC-0994` dosing
+
+```{r}
+data <- expand.ev(amt=400, cmt=12, time=c(0,28), ii=1, addl=20) %>% mutate(ID=1)
+
+out <- mrgsim(mod, data=data, end=56, delta=0.1, Req="GDC,TUMOR")
+```
+
+Plot (code not shown)
+
+```{r,echo=FALSE}
+sims <- tidyr::gather(as.data.frame(out), variable, value, c(GDC:TUMOR))
+sims <- mutate(sims, variable=factor(variable,
+                                     labels=c("GDC-0994 PK", "Tumor")))
+
+ggplot(data=sims) + 
+  geom_line(aes(time,value,col=variable), lwd=1) + 
+  scale_color_manual(values=c("darkslateblue", "firebrick"),guide=FALSE) +
+  scale_x_continuous(name="Time (days)", breaks=seq(0,56,14)) + 
+  facet_wrap(~variable, scales="free_y")
 ```
 
 

@@ -36,7 +36,7 @@ Method**
 -   CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 |
     NOVEMBER 2016 <doi:10.1002/cpt.391>
 
--   [Model](content/model/yoshikado.cpp), [R
+-   [Model](content/model/yoshikado.cpp), [R simulation
     script](content/yoshikado.R), [Fit with minqa &
     RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
@@ -106,6 +106,52 @@ Plot (code not shown)
     . Warning: Transformation introduced infinite values in continuous y-axis
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+
+ERI inhibition model (Kirouac et al.)
+-------------------------------------
+
+    mod <- mread("mapk", "content/model")
+    vp <- readr::read_csv("content/data/s10vpop.csv") %>% slice(1)
+
+    . Parsed with column specification:
+    . cols(
+    .   .default = col_integer(),
+    .   BRAF = col_double(),
+    .   ERK = col_double(),
+    .   FB1 = col_double(),
+    .   FB2 = col_double(),
+    .   FB3 = col_double(),
+    .   FB4 = col_double(),
+    .   MEK = col_double(),
+    .   RAS = col_double(),
+    .   RTK1 = col_double(),
+    .   S6 = col_double(),
+    .   BRAFb = col_double(),
+    .   BRAFt = col_double(),
+    .   CRAFt = col_double(),
+    .   dmax = col_double(),
+    .   G13 = col_double(),
+    .   Gspry = col_double(),
+    .   Gdusp = col_double(),
+    .   k1 = col_double(),
+    .   k2 = col_double(),
+    .   k3 = col_double()
+    .   # ... with 45 more columns
+    . )
+
+    . See spec(...) for full column specifications.
+
+    mod <- param(mod,vp) %>% init(vp)
+
+Simulate to cycles of `GDC-0994` dosing
+
+    data <- expand.ev(amt=400, cmt=12, time=c(0,28), ii=1, addl=20) %>% mutate(ID=1)
+
+    out <- mrgsim(mod, data=data, end=56, delta=0.1, Req="GDC,TUMOR")
+
+Plot (code not shown)
+
+<img src="content/img/README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 Implementation details
 ======================
