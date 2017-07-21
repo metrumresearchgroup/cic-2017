@@ -23,7 +23,7 @@ Alfa and the Biosimilar HX575**
 -   J Clin Pharmacol. 2012 November ; 52(11): 1624–1644.
     <doi:10.1177/0091270011421911>.
 
--   [Model](content/model/epo.cpp), [Example](#epoex) [R
+-   [Model](content/model/epo.cpp), [Example](#epoex), [R
     script](content/epo.R)
 
 <a name="ddi"></a> **Quantitative Analyses of Hepatic OATP-Mediated
