@@ -23,7 +23,8 @@ dose <- filter(data,evid==1) %>% mutate(typef=NULL)
 yobs <- filter(data,evid==0) %>% dplyr::select(DV) %>% unlist %>% unname
 
 wt <- function(x) 1/x^2
-wss <- function(dv,pred,par=NULL) sum(((dv-pred)/dv)^2)
+wss <- function(dv,pred,par=NULL) 
+  sum(((dv-pred)/dv)^2)
 
 
 mod <- mread("yoshikado","model") %>% 

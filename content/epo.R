@@ -2,15 +2,34 @@ library(mrgsolve)
 library(dplyr)
 library(ggplot2)
 
+library(MASS)
+
+MASS::select
+dplyr:::select
+
+mrgsolve:::cmt(mod)
+
+select
+
 mod <- mread("epo","model")
 
 mod %>%
-  ev(amt=7800,rate=-2) %>% 
-  mrgsim(end=480, delta=0.1) %>%
+  ev(.,amt=7800,rate=-2) %>% 
+  mrgsim(.,end=2480, delta=0.1) %>%
   plot
 
+x <- 2
+x %<>% log
 
-mwf <- ev_days(ev(amt=78*100,rate=-2),days="m,w,f",ii=24*7, addl=3)
+x <- log(x)
+x
+
+
+
+
+mwf <- ev_days(ev(amt=78*100,rate=-2),
+               days="m,w,f",ii=24*7, 
+               addl=3)
 
 mwf <- as.ev(mwf)
 
@@ -53,7 +72,8 @@ plot(out)
 library(mrgsolvetk)
 
 .mod <- update(mod, events=mwf, 
-               end=2400,tscale=1/24/7, delta=2) %>% zero_re
+               end=2400,tscale=1/24/7, delta=2) %>% 
+  zero_re
 
 ##' SENSITIVITY ANALYSIS
 ##' EPO CLEARANCE (CL)

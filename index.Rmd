@@ -29,11 +29,51 @@ visual exploration
 
 \vskip 1.5cm
 
-\centerline{\textcolor{mrggreen2}{Cambridge Innovation Center}}
+\centerline{\textcolor{mrggreen2}{Cambridge, MA}}
 \centerline{20 July 2017}
 
 
 ---
+
+
+# Why "Open Science"?
+
+- What is this concept of “open” ?
+- How & why is it beneficial to the growth of our community
+- Examples: 
+    - open-source software: SBML, mrgsolve, Shiny etc., STAN/Torsten(?)
+    - open model repositories: Biomodels, github, DDmore…
+    - Publications, presentations, regulatory docs: 
+        - good (model is described with parameter estimates), 
+        - better (model mathematics provided with parameter estimates), 
+        - best (executable code)
+    - PKsim /  MOBI
+    - Osmosis Foundation
+
+---
+
+# How we implement our science 
+- Overview of Metworx system: 
+    - why share when you don’t have to (Performance), 
+    - how to easily share when you want to (Envision)
+
+---
+
+# Ideal computing
+\includegraphics[width=300pt]{content/img/cloud.pdf}
+
+---
+
+# What we might want
+\includegraphics[width=300pt]{content/img/shinyPic.pdf}
+
+---
+
+# Our workflow (with Metworx)
+\includegraphics[width=300pt]{content/img/metworxFlow.pdf}
+
+
+
 
 
 # Implementaton of Lit-Reported QSP Models in mrgsolve
