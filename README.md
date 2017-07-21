@@ -57,8 +57,10 @@ model**
 Examples
 ========
 
-<a name="epoex"></a> \#\# EPO PK/PD model ([Yan et al.](#epo))
-\[[code](content/model/epo.cpp)\]
+<a name="epoex"></a>
+
+EPO PK/PD model ([Yan et al.](#epo)) \[[code](content/model/epo.cpp)\]
+----------------------------------------------------------------------
 
     mod <- mread("epo", "content/model")
 
@@ -85,8 +87,10 @@ IV dosing
 
 <img src="content/img/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-<a name="ddiex"></a> \#\# OATP-DDI model ([Yoshikado et al.](#ddi))
-\[[code](content/model/yoshikado.cpp)\]
+<a name="ddiex"></a>
+
+OATP-DDI model ([Yoshikado et al.](#ddi)) \[[code](content/model/yoshikado.cpp)\]
+---------------------------------------------------------------------------------
 
     mod <- mread("yoshikado", "content/model")
 
@@ -106,8 +110,10 @@ Plot (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-<a name="erkiex"></a> \#\# ERK inhibition in CRC ([Kirouac et
-al.](#erki)) \[[code](content/model/mapk.cpp)\]
+<a name="erkiex"></a>
+
+ERK inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)\]
+----------------------------------------------------------------------------------
 
     mod <- mread("mapk", "content/model")
     vp <- read.csv("content/data/s10vpop.csv", header=TRUE) %>% slice(1)

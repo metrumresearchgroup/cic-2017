@@ -60,6 +60,7 @@ knitr::opts_chunk$set(comment='.',fig.path="content/img/README-",
 ```
 
 <a name="epoex"></a>
+
 ## EPO PK/PD model ([Yan et al.](#epo)) [[code](content/model/epo.cpp)]
 ```{r}
 mod <- mread("epo", "content/model")
@@ -94,6 +95,7 @@ mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>%
 ```
 
 <a name="ddiex"></a>
+
 ## OATP-DDI model ([Yoshikado et al.](#ddi)) [[code](content/model/yoshikado.cpp)]
 
 ```{r}
@@ -128,6 +130,7 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
 ```
 
 <a name="erkiex"></a>
+
 ## ERK inhibition in CRC ([Kirouac et al.](#erki)) [[code](content/model/mapk.cpp)]
 
 ```{r}
