@@ -1,5 +1,5 @@
-Presentation materials for July 2017 CIC event
-==============================================
+Translating literature-reported quantitative pharmacology models for simulation and interactive visualization
+=============================================================================================================
 
 -   20 July 2017 Cambridge Innovation Center, Cambridge MA
 -   Presentation slide deck: [index.pdf](index.pdf)
