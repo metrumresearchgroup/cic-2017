@@ -119,7 +119,7 @@ ERK inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)
     vp <- read.csv("content/data/s10vpop.csv", header=TRUE) %>% slice(1)
     mod <- param(mod,vp) %>% init(vp)
 
-Simulate to cycles of `GDC-0994` dosing
+Simulate two cycles of `GDC-0994` dosing
 
     data <- expand.ev(amt=400, cmt=12, time=c(0,28), ii=1, addl=20) %>% mutate(ID=1)
 
