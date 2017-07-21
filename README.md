@@ -57,8 +57,8 @@ model**
 Examples
 ========
 
-EPO Model ([Yan et al.](#epo)) \[[code](content/model/epo.cpp)\]
-----------------------------------------------------------------
+EPO PK/PD model ([Yan et al.](#epo)) \[[code](content/model/epo.cpp)\]
+----------------------------------------------------------------------
 
     mod <- mread("epo", "content/model")
 
@@ -106,8 +106,8 @@ Plot (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-ERI inhibition model ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)\]
----------------------------------------------------------------------------------
+ERI inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)\]
+----------------------------------------------------------------------------------
 
     mod <- mread("mapk", "content/model")
     vp <- read.csv("content/data/s10vpop.csv", header=TRUE) %>% slice(1)
