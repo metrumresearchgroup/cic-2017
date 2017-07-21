@@ -121,7 +121,7 @@ data <- bind_rows(no_ddi,ddi)
 out <- mod %>% mrgsim(data=data,end=14, delta=0.1)
 ```
 
-Plot (code not shown)
+__Plot__ (code not shown)
 
 ```{r,echo=FALSE, fig.width=7}
 out <- as.data.frame(out)
@@ -155,7 +155,7 @@ data <- expand.ev(amt=400, cmt=12, time=c(0,28), ii=1, addl=20) %>% mutate(ID=1)
 out <- mrgsim(mod, data=data, end=56, delta=0.1, Req="GDC,TUMOR")
 ```
 
-Plot (code not shown)
+__Plot__ (code not shown)
 
 ```{r,echo=FALSE}
 sims <- tidyr::gather(as.data.frame(out), variable, value, c(GDC:TUMOR))

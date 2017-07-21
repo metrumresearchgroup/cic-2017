@@ -109,7 +109,7 @@ OATP-DDI model ([Yoshikado et al.](#ddi)) \[[code](content/model/yoshikado.cpp)\
 
     out <- mod %>% mrgsim(data=data,end=14, delta=0.1)
 
-Plot (code not shown)
+**Plot** (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
@@ -128,7 +128,7 @@ ERK inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)
 
     out <- mrgsim(mod, data=data, end=56, delta=0.1, Req="GDC,TUMOR")
 
-Plot (code not shown)
+**Plot** (code not shown)
 
 <img src="content/img/README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
