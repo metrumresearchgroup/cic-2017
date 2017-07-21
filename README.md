@@ -66,24 +66,27 @@ EPO PK/PD model ([Yan et al.](#epo)) \[[code](content/model/epo.cpp)\]
 
 ### QW dosing is equally effective as TIW dosing for SC but not IV administration
 
-SC dosing
+-   `EPOi` = epo concentration (mIU/mL)
+-   `HGBi` = hemoglobin (g/dL)
+
+**SC dosing**
 
     tiw <- ev_days(ev(amt=7800,ID=1,rate=-2), days="m,w,f", addl=3)
-    qd <- filter(tiw, time==0) %>% mutate(amt=40000,ID=2)
+    qw <- filter(tiw, time==0) %>% mutate(amt=40000,ID=2)
 
-    data_sc <- bind_rows(tiw,qd)
+    data_sc <- bind_rows(tiw,qw)
 
     mod %>% zero_re %>% mrgsim(data=data_sc, end=700, delta=0.5) %>% 
-      plot(EPOi+RBCi~time)
+      plot(EPOi+HGBi~time)
 
 <img src="content/img/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
-IV dosing
+**IV dosing**
 
     data_iv <- mutate(data_sc, rate=0, cmt=2)
 
     mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>% 
-      plot(EPOi+RBCi~time)
+      plot(EPOi+HGBi~time)
 
 <img src="content/img/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
