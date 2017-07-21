@@ -1,7 +1,7 @@
 ---
 output: 
-  md_document:
-    variant: markdown_github
+md_document:
+variant: markdown_github
 title: ""
 author: ""
 date: ""
@@ -33,7 +33,7 @@ __Quantitative Analyses of Hepatic OATP-Mediated Interactions Between Statins an
 - CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 | NOVEMBER 2016 doi:10.1002/cpt.391
 
 - [Model](content/model/yoshikado.cpp), [R script](content/yoshikado.R), 
-  [Fit with minqa & RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
+[Fit with minqa & RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
 __Clinical responses to ERK inhibition in BRAF{V600E}-mutant colorectal cancer predicted using a computational model__
 
@@ -46,9 +46,10 @@ __Clinical responses to ERK inhibition in BRAF{V600E}-mutant colorectal cancer p
 
 # Examples
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE}
 library(dplyr)
 library(mrgsolve)
+library(ggplot2)
 options(mrgsolve_mread_quiet=TRUE)
 knitr::opts_chunk$set(comment='.',fig.path="content/img/README-")
 ```
@@ -62,6 +63,7 @@ mod <- mread("epo", "content/model")
 ### QW dosing is equally effective as TIW dosing for SC but not IV administration
 
 SC dosing
+
 ```{r}
 tiw <- ev_days(ev(amt=7800,ID=1,rate=-2), days="m,w,f", addl=3)
 qd <- filter(tiw, time==0) %>% mutate(amt=40000,ID=2)
@@ -72,7 +74,9 @@ data_sc <- bind_rows(tiw,qd)
 ```{r}
 mod %>% zero_re %>% mrgsim(data=data_sc, end=700, delta=0.5) %>% plot
 ```
+
 IV dosing
+
 ```{r}
 data_iv <- mutate(data_sc, rate=0, cmt=2)
 ```
@@ -81,6 +85,40 @@ data_iv <- mutate(data_sc, rate=0, cmt=2)
 ```{r}
 mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>% plot
 ```
+
+## OATP-DDI model (Yoshikado et al.)
+
+```{r}
+mod <- mread("yoshikado", "content/model")
+```
+
+Simulate the DDI
+```{r}
+ddi <- c(ev(amt=2000, cmt=2, ID=1),
+         ev(amt=30,   cmt=1, ID=1))
+
+ddi <- as.data.frame(ddi)
+no_ddi <- filter(ddi, amt==30) %>% mutate(ID=2)
+
+data <- bind_rows(no_ddi,ddi)
+
+out <- mod %>% mrgsim(data=data,end=14, delta=0.1)
+```
+
+Plot (code not shown)
+
+```{r,echo=FALSE}
+out <- as.data.frame(out)
+ggplot(out, aes(x=time,y=CP,col=factor(ID))) + 
+  scale_y_continuous(trans="log10", limit=c(0.1,100), breaks=c(0.1,1,10,100)) + 
+  geom_line(lwd=1) + 
+  scale_x_continuous(breaks=seq(0,14,2),limit=c(0,14)) + 
+  scale_color_manual(values=c("darkslateblue", "firebrick"), 
+                     name="", labels=c("No-DDI", "DDI")) + 
+  theme(legend.position="top")
+
+```
+
 
 # Implementation details
 
