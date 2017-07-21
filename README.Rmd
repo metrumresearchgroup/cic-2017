@@ -52,7 +52,7 @@ library(mrgsolve)
 library(ggplot2)
 options(mrgsolve_mread_quiet=TRUE)
 knitr::opts_chunk$set(comment='.',fig.path="content/img/README-",
-                      fig.align="center")
+                      fig.align="center", warning=FALSE)
 ```
 
 
@@ -128,7 +128,7 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
 
 ```{r}
 mod <- mread("mapk", "content/model")
-vp <- readr::read_csv("content/data/s10vpop.csv") %>% slice(1)
+vp <- read.csv("content/data/s10vpop.csv", header=TRUE) %>% slice(1)
 mod <- param(mod,vp) %>% init(vp)
 ```
 
