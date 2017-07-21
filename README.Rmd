@@ -18,6 +18,7 @@ developing any of the models presented here, but acknowledge the authors who
 not only did the scientific work, but published that work in a way that 
 allowed us to not only read about their models but to also use those models.
 
+<a name="epo"></a>
 __Population Pharmacokinetic and Pharmacodynamic Model- Based Comparability Assessment of a Recombinant Human Epoetin Alfa and the Biosimilar HX575__
 
 - Xiaoyu Yan, MS, Philip J. Lowe, PhD, Martin Fink, PhD, Alexander Berghout, PhD, Sigrid Balser, PhD, and Wojciech Krzyzanski, PhD
@@ -26,6 +27,7 @@ __Population Pharmacokinetic and Pharmacodynamic Model- Based Comparability Asse
 
 - [Model](content/model/epo.cpp), [R script](content/epo.R)
 
+<a name="ddi"></a>
 __Quantitative Analyses of Hepatic OATP-Mediated Interactions Between Statins and Inhibitors Using PBPK Modeling With a Parameter Optimization Method__
 
 - T Yoshikado, K Yoshida, N Kotani, T Nakada, R Asaumi, K Toshimoto, K Maeda, H Kusuhara and Y Sugiyama
@@ -35,6 +37,8 @@ __Quantitative Analyses of Hepatic OATP-Mediated Interactions Between Statins an
 - [Model](content/model/yoshikado.cpp), [R simulation script](content/yoshikado.R), 
 [Fit with minqa & RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
+
+<a name="erki"></a>
 __Clinical responses to ERK inhibition in BRAF{V600E}-mutant colorectal cancer predicted using a computational model__
 
 - Daniel C. Kirouac, Gabriele Schaefer, Jocelyn Chan, Mark Merchant, Christine Orr, Shih-Min A. Huang, John Moffat, Lichuan Liu, Kapil Gadkar and Saroja Ramanujan
@@ -56,7 +60,7 @@ knitr::opts_chunk$set(comment='.',fig.path="content/img/README-",
 ```
 
 
-## EPO Model (Yan et al.)
+## EPO Model [Yan et al.](#epo)
 ```{r}
 mod <- mread("epo", "content/model")
 ```
@@ -90,7 +94,7 @@ mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>%
 ```
 
 
-## OATP-DDI model (Yoshikado et al.)
+## OATP-DDI model [Yoshikado et al.](#ddi)
 
 ```{r}
 mod <- mread("yoshikado", "content/model")
@@ -124,7 +128,7 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
 ```
 
 
-## ERI inhibition model (Kirouac et al.)
+## ERI inhibition model [Kirouac et al.](#erki)
 
 ```{r}
 mod <- mread("mapk", "content/model")

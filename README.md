@@ -14,9 +14,9 @@ who not only did the scientific work, but published that work in a way
 that allowed us to not only read about their models but to also use
 those models.
 
-**Population Pharmacokinetic and Pharmacodynamic Model- Based
-Comparability Assessment of a Recombinant Human Epoetin Alfa and the
-Biosimilar HX575**
+<a name="epo"></a> **Population Pharmacokinetic and Pharmacodynamic
+Model- Based Comparability Assessment of a Recombinant Human Epoetin
+Alfa and the Biosimilar HX575**
 
 -   Xiaoyu Yan, MS, Philip J. Lowe, PhD, Martin Fink, PhD, Alexander
     Berghout, PhD, Sigrid Balser, PhD, and Wojciech Krzyzanski, PhD
@@ -26,9 +26,9 @@ Biosimilar HX575**
 
 -   [Model](content/model/epo.cpp), [R script](content/epo.R)
 
-**Quantitative Analyses of Hepatic OATP-Mediated Interactions Between
-Statins and Inhibitors Using PBPK Modeling With a Parameter Optimization
-Method**
+<a name="ddi"></a> **Quantitative Analyses of Hepatic OATP-Mediated
+Interactions Between Statins and Inhibitors Using PBPK Modeling With a
+Parameter Optimization Method**
 
 -   T Yoshikado, K Yoshida, N Kotani, T Nakada, R Asaumi, K Toshimoto, K
     Maeda, H Kusuhara and Y Sugiyama
@@ -40,8 +40,9 @@ Method**
     script](content/yoshikado.R), [Fit with minqa &
     RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
-**Clinical responses to ERK inhibition in BRAF{V600E}-mutant colorectal
-cancer predicted using a computational model**
+<a name="erki"></a> **Clinical responses to ERK inhibition in
+BRAF{V600E}-mutant colorectal cancer predicted using a computational
+model**
 
 -   Daniel C. Kirouac, Gabriele Schaefer, Jocelyn Chan, Mark Merchant,
     Christine Orr, Shih-Min A. Huang, John Moffat, Lichuan Liu, Kapil
@@ -56,8 +57,8 @@ cancer predicted using a computational model**
 Examples
 ========
 
-EPO Model (Yan et al.)
-----------------------
+EPO Model [Yan et al.](#epo)
+----------------------------
 
     mod <- mread("epo", "content/model")
 
@@ -84,8 +85,8 @@ IV dosing
 
 <img src="content/img/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-OATP-DDI model (Yoshikado et al.)
----------------------------------
+OATP-DDI model [Yoshikado et al.](#ddi)
+---------------------------------------
 
     mod <- mread("yoshikado", "content/model")
 
@@ -105,8 +106,8 @@ Plot (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-ERI inhibition model (Kirouac et al.)
--------------------------------------
+ERI inhibition model [Kirouac et al.](#erki)
+--------------------------------------------
 
     mod <- mread("mapk", "content/model")
     vp <- read.csv("content/data/s10vpop.csv", header=TRUE) %>% slice(1)
