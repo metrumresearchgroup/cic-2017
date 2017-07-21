@@ -10,7 +10,10 @@ source("functions.R")
 
 typef <- function(x) factor(x, c(1,2), c("Pitavastatin alone", "Pitavastatin + CsA"))
 
-data <- read_csv("fig4a.csv") %>% mutate(profile = NULL,type=ID,typef=typef(ID))
+data.file <- file.path("data", "fig4a.csv")
+
+data <- read_csv(data.file) %>% 
+  mutate(profile = NULL,type=ID,typef=typef(ID))
 
 ggplot(data=data,aes(time,DV)) + 
   geom_point(col="firebrick") + 
@@ -22,7 +25,6 @@ dose <- filter(data,evid==1) %>% mutate(typef=NULL)
 
 yobs <- filter(data,evid==0) %>% dplyr::select(DV) %>% unlist %>% unname
 
-wt <- function(x) 1/x^2
 wss <- function(dv,pred,par=NULL) 
   sum(((dv-pred)/dv)^2)
 
@@ -101,6 +103,7 @@ fitt <- fit_optim(mod,data,pred="CP",ofv=wss,par=par,method="CG",
                  control=list(trace=10))
 
 coef(fitt$pars) 
+
 fitt$value
 
 

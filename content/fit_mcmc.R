@@ -9,7 +9,9 @@ library(ggplot2)
 
 typef <- function(x) factor(x, c(1,2), c("Pitavastatin alone", "Pitavastatin + CsA"))
 
-data <- read_csv("fig4a.csv") %>% mutate(profile = NULL,type=ID)
+data.file <- file.path("data", "fig4a.csv")
+
+data <- read_csv(data.file) %>% mutate(profile = NULL,type=ID)
 
 dose <- filter(data,evid==1)
 
@@ -59,22 +61,22 @@ mcfun <- function(par,.data,n,yobs,pred=FALSE) {
   return(sum(data.like,sum.prior))
 }
 
-##' Fit 5 parameters on log scale
-theta <- log(c(fbCLintall = 1.2, ikiu = 1.2, 
-               fbile = 0.8, ka=1, ktr =1, sigma=3))
+##' Fit 4 parameters on log scale
+theta <- log(c(fbCLintall = 1.2, ikiu = 0.1, 
+               fbile = 0.8,  ktr =1, sigma=1))
 
 which_pk <- which(names(theta) != "sigma")
 which_sig <- which(names(theta) == "sigma")
 
 library(MCMCpack)
-contr <- list(fnscale = -1, trace = 1, maxit=5000)
+contr <- list(fnscale = -1, trace = 1)
 set.seed(1110)
 fit <- MCMCmetrop1R(mcfun,theta.init=theta, .data=data, 
-                    optim.method="CG", verbose=100,
+                    optim.method="BFGS", verbose=100,
                     n=names(theta), yobs=yobs, tune = 1,
-                    optim.control=contr, burnin=10000, mcmc=10000)
-
+                    optim.control=contr, burnin=5000, mcmc=5000)
 
 plot(fit)
+
 summary(exp(fit))
 
