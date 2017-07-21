@@ -52,7 +52,7 @@ library(mrgsolve)
 library(ggplot2)
 options(mrgsolve_mread_quiet=TRUE)
 knitr::opts_chunk$set(comment='.',fig.path="content/img/README-",
-                      fig.align="center", warning=FALSE, fig.height=4, fig.width=10)
+                      fig.align="center", warning=FALSE, fig.height=4.5, fig.width=10)
 ```
 
 
