@@ -34,7 +34,7 @@ __Quantitative Analyses of Hepatic OATP-Mediated Interactions Between Statins an
 
 - CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 | NOVEMBER 2016 doi:10.1002/cpt.391
 
-- [Model](content/model/yoshikado.cpp), [Example](#ddiex)], [R simulation script](content/yoshikado.R), 
+- [Model](content/model/yoshikado.cpp), [Example](#ddiex), [R simulation script](content/yoshikado.R), 
 [Fit with minqa & RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
 
@@ -59,7 +59,7 @@ knitr::opts_chunk$set(comment='.',fig.path="content/img/README-",
                       fig.align="center", warning=FALSE, fig.height=4.5, fig.width=10)
 ```
 
-<a name="epoex"</a>
+<a name="epoex"></a>
 ## EPO PK/PD model ([Yan et al.](#epo)) [[code](content/model/epo.cpp)]
 ```{r}
 mod <- mread("epo", "content/model")
@@ -93,7 +93,7 @@ mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>%
   plot(EPOi+RBCi~time)
 ```
 
-<a name="ddiex"</a>
+<a name="ddiex"></a>
 ## OATP-DDI model ([Yoshikado et al.](#ddi)) [[code](content/model/yoshikado.cpp)]
 
 ```{r}
@@ -127,7 +127,7 @@ ggplot(out, aes(x=time,y=CP,col=factor(ID))) +
 
 ```
 
-<a name="erkiex"</a>
+<a name="erkiex"></a>
 ## ERK inhibition in CRC ([Kirouac et al.](#erki)) [[code](content/model/mapk.cpp)]
 
 ```{r}

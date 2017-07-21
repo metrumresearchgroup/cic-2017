@@ -36,7 +36,7 @@ Parameter Optimization Method**
 -   CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 |
     NOVEMBER 2016 <doi:10.1002/cpt.391>
 
--   [Model](content/model/yoshikado.cpp), [Example](#ddiex)\], [R
+-   [Model](content/model/yoshikado.cpp), [Example](#ddiex), [R
     simulation script](content/yoshikado.R), [Fit with minqa &
     RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
@@ -57,7 +57,7 @@ model**
 Examples
 ========
 
-<a name="epoex"</a> \#\# EPO PK/PD model ([Yan et al.](#epo))
+<a name="epoex"></a> \#\# EPO PK/PD model ([Yan et al.](#epo))
 \[[code](content/model/epo.cpp)\]
 
     mod <- mread("epo", "content/model")
@@ -85,7 +85,7 @@ IV dosing
 
 <img src="content/img/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-<a name="ddiex"</a> \#\# OATP-DDI model ([Yoshikado et al.](#ddi))
+<a name="ddiex"></a> \#\# OATP-DDI model ([Yoshikado et al.](#ddi))
 \[[code](content/model/yoshikado.cpp)\]
 
     mod <- mread("yoshikado", "content/model")
@@ -106,7 +106,7 @@ Plot (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-<a name="erkiex"</a> \#\# ERK inhibition in CRC ([Kirouac et
+<a name="erkiex"></a> \#\# ERK inhibition in CRC ([Kirouac et
 al.](#erki)) \[[code](content/model/mapk.cpp)\]
 
     mod <- mread("mapk", "content/model")
