@@ -33,15 +33,66 @@ The goal of this presentation was to translate and use models reported in the li
 
 -   [Model](content/model/mapk.cpp), [R script](content/mapk.R), [Generate figure 6b](content/mapk_figure.R)
 
-R packages
-==========
+Examples
+========
 
--   dplyr
--   readr
--   MCMCpack
--   minqa
--   tidyr
--   ggplot2
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+EPO Model (Yan et al.)
+----------------------
+
+``` r
+mod <- mread("epo", "content/model")
+```
+
+### QW dosing is equally effective as TIW dosing for SC but not IV administration
+
+SC dosing
+
+``` r
+tiw <- ev_days(ev(amt=7800,ID=1,rate=-2), days="m,w,f", addl=3)
+qd <- filter(tiw, time==0) %>% mutate(amt=40000,ID=2)
+
+data_sc <- bind_rows(tiw,qd)
+```
+
+``` r
+mod %>% zero_re %>% mrgsim(data=data_sc, end=700, delta=0.5) %>% plot
+```
+
+![](content/img/README-unnamed-chunk-4-1.png) IV dosing
+
+``` r
+data_iv <- mutate(data_sc, rate=0, cmt=2)
+```
+
+``` r
+mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>% plot
+```
+
+![](content/img/README-unnamed-chunk-6-1.png)
+
+Implementation details
+======================
+
+R packages
+----------
+
+-   `dplyr`
+-   `readr`
+-   `MCMCpack`
+-   `minqa`
+-   `tidyr`
+-   `ggplot2`
 
 mrgsolve installation
 ---------------------
