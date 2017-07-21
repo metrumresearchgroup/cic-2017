@@ -107,7 +107,8 @@ mod %>% zero_re %>% mrgsim(data=data_iv, end=700, delta=0.5) %>%
 mod <- mread("yoshikado", "content/model")
 ```
 
-Simulate the DDI
+__Simulate the DDI between pitavastatin and cyclosporine__
+
 ```{r}
 ddi <- c(ev(amt=2000, cmt=2),
          ev(amt=30,   cmt=1))
@@ -146,7 +147,7 @@ mod <- param(mod,vp) %>% init(vp)
 ```
 
 
-Simulate two cycles of  `GDC-0994` dosing
+__Simulate two cycles of  `GDC-0994` dosing__
 
 ```{r}
 data <- expand.ev(amt=400, cmt=12, time=c(0,28), ii=1, addl=20) %>% mutate(ID=1)
