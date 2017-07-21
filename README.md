@@ -23,7 +23,8 @@ Alfa and the Biosimilar HX575**
 -   J Clin Pharmacol. 2012 November ; 52(11): 1624–1644.
     <doi:10.1177/0091270011421911>.
 
--   [Model](content/model/epo.cpp), [R script](content/epo.R)
+-   [Model](content/model/epo.cpp), [Example](#epoex) [R
+    script](content/epo.R)
 
 <a name="ddi"></a> **Quantitative Analyses of Hepatic OATP-Mediated
 Interactions Between Statins and Inhibitors Using PBPK Modeling With a
@@ -35,8 +36,8 @@ Parameter Optimization Method**
 -   CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 |
     NOVEMBER 2016 <doi:10.1002/cpt.391>
 
--   [Model](content/model/yoshikado.cpp), [R simulation
-    script](content/yoshikado.R), [Fit with minqa &
+-   [Model](content/model/yoshikado.cpp), [Example](#ddiex)\], [R
+    simulation script](content/yoshikado.R), [Fit with minqa &
     RcppDE](content/fit.R), [Fit with MCMCpack](content/fit_mcmc.R)
 
 <a name="erki"></a> **Clinical responses to ERK inhibition in
@@ -50,14 +51,14 @@ model**
 -   npj Systems Biology and Applications (2017) 3:14 ;
     <doi:10.1038/s41540-017-0016-1>
 
--   [Model](content/model/mapk.cpp), [R script](content/mapk.R),
-    [Generate figure 6b](content/mapk_figure.R)
+-   [Model](content/model/mapk.cpp), [Example](#erkiex), [R
+    script](content/mapk.R), [Generate figure 6b](content/mapk_figure.R)
 
 Examples
 ========
 
-EPO PK/PD model ([Yan et al.](#epo)) \[[code](content/model/epo.cpp)\]
-----------------------------------------------------------------------
+<a name="epoex"</a> \#\# EPO PK/PD model ([Yan et al.](#epo))
+\[[code](content/model/epo.cpp)\]
 
     mod <- mread("epo", "content/model")
 
@@ -84,8 +85,8 @@ IV dosing
 
 <img src="content/img/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-OATP-DDI model ([Yoshikado et al.](#ddi)) \[[code](content/model/yoshikado.cpp)\]
----------------------------------------------------------------------------------
+<a name="ddiex"</a> \#\# OATP-DDI model ([Yoshikado et al.](#ddi))
+\[[code](content/model/yoshikado.cpp)\]
 
     mod <- mread("yoshikado", "content/model")
 
@@ -105,8 +106,8 @@ Plot (code not shown)
 
 <img src="content/img/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-ERK inhibition in CRC ([Kirouac et al.](#erki)) \[[code](content/model/mapk.cpp)\]
-----------------------------------------------------------------------------------
+<a name="erkiex"</a> \#\# ERK inhibition in CRC ([Kirouac et
+al.](#erki)) \[[code](content/model/mapk.cpp)\]
 
     mod <- mread("mapk", "content/model")
     vp <- read.csv("content/data/s10vpop.csv", header=TRUE) %>% slice(1)
