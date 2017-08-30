@@ -20,8 +20,8 @@ Alfa and the Biosimilar HX575**
 -   Xiaoyu Yan, MS, Philip J. Lowe, PhD, Martin Fink, PhD, Alexander
     Berghout, PhD, Sigrid Balser, PhD, and Wojciech Krzyzanski, PhD
 
--   J Clin Pharmacol. 2012 November ; 52(11): 1624–1644.
-    <doi:10.1177/0091270011421911>
+-   [J Clin Pharmacol. 2012 November ; 52(11): 1624–1644.
+    doi:10.1177/0091270011421911](https://www.ncbi.nlm.nih.gov/pubmed/22162538)
 
 -   [Model](content/model/epo.cpp), [Example](#epoex), [R
     script](content/epo.R)
@@ -33,8 +33,9 @@ Parameter Optimization Method**
 -   T Yoshikado, K Yoshida, N Kotani, T Nakada, R Asaumi, K Toshimoto, K
     Maeda, H Kusuhara and Y Sugiyama
 
--   CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 |
-    NOVEMBER 2016 <doi:10.1002/cpt.391>
+-   [CLINICAL PHARMACOLOGY & THERAPEUTICS | VOLUME 100 NUMBER 5 |
+    NOVEMBER 2016
+    doi:10.1002/cpt.391](https://www.ncbi.nlm.nih.gov/pubmed/27170342)
 
 -   [Model](content/model/yoshikado.cpp), [Example](#ddiex), [R
     simulation script](content/yoshikado.R), [Fit with minqa &
@@ -48,8 +49,8 @@ model**
     Christine Orr, Shih-Min A. Huang, John Moffat, Lichuan Liu, Kapil
     Gadkar and Saroja Ramanujan
 
--   npj Systems Biology and Applications (2017) 3:14 ;
-    <doi:10.1038/s41540-017-0016-1>
+-   [npj Systems Biology and Applications (2017) 3:14 ;
+    doi:10.1038/s41540-017-0016-1](https://www.ncbi.nlm.nih.gov/pubmed/28649441)
 
 -   [Model](content/model/mapk.cpp), [Example](#erkiex), [R
     script](content/mapk.R), [Generate figure 6b](content/mapk_figure.R)
