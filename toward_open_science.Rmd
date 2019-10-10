@@ -1,0 +1,184 @@
+---
+ title: ""
+ author: ""
+ date: ""
+ output: 
+   beamer_presentation:
+     fig_width: 6
+     fig_height: 3
+     includes:
+       in_header: "content/src/mrgbeam.tex"
+---
+
+---
+
+
+
+
+\vskip 0.5cm
+\centerline{\includegraphics[width=5cm]{content/img/Metrum_SystemsPharmacology}}
+\vskip 1cm
+\begin{center}
+\begin{minipage}{0.8\linewidth}
+\begin{block}{\centering {\bf TOWARD OPEN SCIENCE}}\centering Translating literature-reported PBPK and QSP models for simulation and interactive
+visual exploration
+\end{block}
+\end{minipage}
+\end{center}
+
+\vskip 1.5cm
+
+\centerline{\textcolor{mrggreen2}{University at Buffalo | Buffalo NY}}
+\centerline{10 April 2018}
+
+
+---
+
+
+# Why "Open Science"?
+
+- What is this concept of “open” ?
+- How & why is it beneficial to the growth of our community
+- Examples: 
+    - open-source software: SBML, mrgsolve, Shiny etc., STAN/Torsten(?)
+    - open model repositories: Biomodels, github, DDmore…
+    - Publications, presentations, regulatory docs: 
+        - good (model is described with parameter estimates), 
+        - better (model mathematics provided with parameter estimates), 
+        - best (executable code)
+    - PKsim /  MOBI
+    - Osmosis Foundation
+
+---
+
+# How we implement our science 
+- Overview of Metworx system: 
+    - why share when you don’t have to (Performance), 
+    - how to easily share when you want to (Envision)
+
+---
+
+# Ideal computing
+\includegraphics[width=300pt]{content/img/cloud.pdf}
+
+---
+
+# What we might want
+\includegraphics[width=300pt]{content/img/shinyPic.pdf}
+
+---
+
+# Our workflow (with Metworx)
+\includegraphics[width=300pt]{content/img/metworxFlow.pdf}
+
+
+
+
+
+# Implementaton of Lit-Reported QSP Models in mrgsolve
+
+- About mrgsolve / background
+- `mrgsolve` workflow in `R`
+    - Yan et al.  Pop PK and PD of Recombinant EPO and biosimilar. J Clin Pharmacol. 2012 
+      November ; 52(11): 1624–1644
+    - Introduce `mrgsolvetk`
+- Parameter estimation in statin PBPK model
+    - Yoshikado et al. Hepatic OATP-mediated DDI between pitavastatin 
+    and cyclosporin. CP\&T volume 100 number 5 2016
+    - `minqa::newuoa`,  `RcppDE::DEoptim`, `MCMCpack::bayes`
+- Sensitivity analyses and Dose-Response
+    - Kirouac et al. Clinical responses to ERK inhibition with GDC-0994 as mono-
+    and combination therapy in colorectal cancer. npj Systems Biology and 
+    Applications (2017) 14
+    - Translate from `SBML` to `mrgsolve`
+- Work with the Kirouac model in a Rshiny app
+
+
+# About `mrgsolve` 
+
+- `R` package for simulation from ODE-based models
+    - Free, OpenSource, GitHub, CRAN
+- Language
+    - Models written in `C++` inside model specification format
+    - General purpose solver: `ODEPACK` / `DLSODA` (`FORTRAN`)
+    - Simulation workflow in `R`
+- Hierarchical (population) simulation
+    - `ID`, $\eta$, $\varepsilon$
+- Integrated PK functionaility
+    - Bolus, infusion, `F`, `ALAG`, `SS` etc, handled under the hood
+    - 1- and 2-cmt PK models in closed-form
+- Extensible using `R`, `C++`, `Rcpp`, `boost`, `RcppArmadillo`
+- `R` is it's natural habitat
+
+# `mrgsovle` started as `QSP` modeling tool
+- Motivation: large bone/mineral homeostatsis model (CaBone)
+- History using
+    - Berkeley Madonna
+    - WinBUGS
+    - NONMEM (attempted)
+- 2010: write `R` front end to `deSolve`
+- 2012: write `C++` interface to `DLSODA`
+- Develop dosing / event capability
+- More recently, expose functionality provided by
+    - `Rcpp` - vectors, matrices, functions, environments, random numbers 
+    - `boost` - numerical tools in `C++`
+    - users' own `C++` code (functions, data structures, classes)
+- Translator from `SBML` to `mrgsolve` using `R` bindings to `libSBML`   
+
+
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/epotitle}
+
+[DDMoRe Repository DDMODEL00000076](http://repository.ddmore.foundation/model/DDMODEL00000076)
+
+# EPO Model
+\centering
+\includegraphics[width=300pt]{content/img/epomodel}
+
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/statintitle}
+
+CP\&T vol. 100 no. 5 pp. 513-23 11/2016
+
+# Pitavastatin PBPK model with EHC
+
+\centering
+\includegraphics[width=200pt]{content/img/statinmodel}
+
+# CsA PBPK model runs along with statin model (DDI)
+
+\centering
+\includegraphics[width=200pt]{content/img/csamodel}
+
+
+# Figure 4a - estimate model parameters with this data
+
+\centering
+\includegraphics[width=225pt]{content/img/statinprofile}
+
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/erktitle}
+
+
+# MAPK signaling
+\centering
+\includegraphics[width=200pt]{content/img/erkmodel}
+
+---
+
+\centering
+\includegraphics[width=300pt]{content/img/erkeq}
+
+\includegraphics[width=300pt]{content/img/erkworeq}
+
+
+# Kirouac et al. Figure 6b
+
+\centering
+\includegraphics[width=300pt]{content/img/erk6b}
